@@ -1,5 +1,7 @@
 ## WeLearn React
 
+[![Join the chat at https://gitter.im/wework/we-learn-react](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/wework/we-learn-react?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 To get started:
 
 ```sh

@@ -6,17 +6,9 @@ To get started:
 > git clone git@github.com:wework/we-learn-react.git
 > cd we-learn-react
 > python -m SimpleHTTPServer 8000
+
+navigate to http://localhost:8000 to see your app! woo!!
 ```
-
-For Windows systems:
-
-```sh
-# TODO figure out wat
-```
-
-### Tutorial
-
-Coming soon!
 
 ### Tasks
 

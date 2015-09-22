@@ -8,7 +8,7 @@ var posts = [{
 
 var BlogApp = React.createClass({
   render: function() {
-    return <div>Welcome! Showing {this.props.posts.length} posts.</div>;
+    return <div>Welcome! I have {this.props.posts.length} posts. Now let's show them!</div>;
   }
 });
 

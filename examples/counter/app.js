@@ -4,7 +4,7 @@ var Counter = React.createClass({
   },
 
   increment: function() {
-    this.setState({ times: this.state.times + 1 });
+    this.setState({ times: ++this.state.times });
   },
 
   render: function() {

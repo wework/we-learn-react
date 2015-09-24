@@ -21,10 +21,48 @@ var TodoItem = React.createClass({
   }
 });
 
+var NewTodo = React.createClass({
+  getInitialState: function() {
+    return { value: '' };
+  },
+
+  componentDidMount: function() {
+    this.focus();
+  },
+
+  onSubmit: function() {
+    this.props.onSubmit(this.state.value);
+    this.setState({ value: '' });
+    this.focus();
+  },
+
+  onChange: function(e) {
+    this.setState({ value: e.target.value });
+  },
+
+  submitOnEnter: function(e) {
+    if (e.key === 'Enter') {
+      this.onSubmit();
+    }
+  },
+
+  focus: function() {
+    React.findDOMNode(this.refs.input).focus();
+  },
+
+  render: function() {
+    return (
+      <div>
+        <input ref="input" onChange={this.onChange} value={this.state.value} onKeyPress={this.submitOnEnter} />
+        <button onClick={this.onSubmit}>New Item</button>
+      </div>
+    )
+  }
+});
+
 var TodoList = React.createClass({
   getInitialState: function() {
     return { 
-      newItem: "",
       items: this.props.items.map(function(item) {
         return { title: item, completed: false };
       })
@@ -38,24 +76,16 @@ var TodoList = React.createClass({
     this.setState({ items: items });
   },
 
-  onChangeNewItem: function(e) {
-    this.setState({newItem: e.target.value});
-  },
+  onSubmitNewItem: function(newItem) {
+    var items, newItem, newIndex;
 
-  onSubmitNewItem: function() {
-    var items, newItem;
-
-    items = this.state.items;
-
-    var newItem = {
-      title: this.state.newItem,
-      index: this.state.items.length,
-      completed: false
-    };
+    items    = this.state.items;
+    newIndex = this.state.items.length;
+    newItem  = { title: newItem, index: newIndex, completed: false };
 
     items.push(newItem);
 
-    this.setState({ items: items, newItem: "" });
+    this.setState({ items: items });
   },
 
   render: function() {
@@ -68,8 +98,7 @@ var TodoList = React.createClass({
     return (
       <div>
         {items}
-        <input ref="newItem" onChange={this.onChangeNewItem} value={this.state.newItem} />
-        <button onClick={this.onSubmitNewItem}>New Item</button>
+        <NewTodo onSubmit={this.onSubmitNewItem} />
       </div>
     )
   }
